@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="news_list">
+    <ul>
+        {% for new in all_news %}
+            <li>
+                <div class="date"><p>{{ new.add_time|date:"d" }}</p><span>{{ new.add_time|date:"m" }}月</span></div>
+                <div class="pic"><a href="{% url 'news:news_detail' new.id %}"><img class="scale-effect" src="
+                        {{ MEDIA_URL }}{{ new.image }}"></a></div>
+                <div class="con">
+                    <h3><a href="{% url 'news:news_detail' new.id %}">{{ new.title }}</a></h3>
+                    <p>{{ new.content|striptags|truncatechars:"100" }}
+                        <a href="{% url 'news:news_detail' new.id %}">详细信息</a>
+                    </p>
+                </div>
+                <div class="share">
+                    <div class="bdsharebuttonbox">
+                        <a href="#" class="bds_more" data-cmd="more"></a>
+                    </div>
+                    <script>window._bd_share_config = {
+                        "common": {
+                            "bdSnsKey": {},
+                            "bdText": "",
+                            "bdMini": "2",
+                            "bdMiniList": false,
+                            "bdPic": "",
+                            "bdStyle": "0",
+                            "bdSize": "16"
+                        }, "share": {}
+                    };
+                    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+                </div>
+                <div class="clear"></div>
+            </li>
+        {% endfor %}
+
+    </ul>
+</div>
+</div>
+</body>
+</html>
